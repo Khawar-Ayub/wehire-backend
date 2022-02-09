@@ -1,0 +1,27 @@
+{
+  "name": "wehire-backend",
+  "version": "1.0.0",
+  "description": "fyp backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moiz-Ur-Rehman/wehire-backend.git"
+  },
+  "keywords": [
+    "node-js"
+  ],
+  "author": "moiz-ur-rehman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Moiz-Ur-Rehman/wehire-backend/issues"
+  },
+  "homepage": "https://github.com/Moiz-Ur-Rehman/wehire-backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15"
+  }
+}
