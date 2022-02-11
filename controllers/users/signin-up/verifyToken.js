@@ -7,7 +7,7 @@ const verifyToken = (req, res, next) => {
     });
   }
   try {
-    const decoded = jwt.verify(accessToken, process.env.JWT_KEY || "Secret");
+    const decoded = jwt.verify(accessToken, process.env.JWT_KEY);
     req.userId = decoded.userId;
     next();
   } catch (err) {

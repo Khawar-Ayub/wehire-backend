@@ -39,7 +39,7 @@ router.route("/login").post((request, response) => {
                   email: user[0][0].email,
                   userId: user[0][0].userId,
                 },
-                process.env.JWT_KEY || "Secret",
+                process.env.JWT_KEY,
                 {
                   expiresIn: "2h",
                 }

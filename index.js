@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const connectionDB = require("./database/db");
+require('dotenv').config()
 const port = process.env.PORT || 4000;
 var cookieParser = require('cookie-parser')
 
