@@ -12,7 +12,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(cookieParser())
 
 //////////////////////////  LOGIN    ////////////////////////////
-/*  http://localhost:4000/user/login    
+/*  http://localhost:5000/user/login    
 {
     "email": "ali123@gmail.com",
     "password": "123"
@@ -69,7 +69,7 @@ router.route("/login").post((request, response) => {
 });
 
 ////////////////////////// LOGOUT ///////////////////////////
-//  http://localhost:4000/user/logout
+//  http://localhost:5000/user/logout
 
 router.route("/logout").get(verifyToken,(request, response) => {
     response.clearCookie("access_token");

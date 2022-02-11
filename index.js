@@ -15,10 +15,11 @@ app.use(cookieParser())
 //Controllers
 const registerController = require("./controllers/users/signin-up/registerController");
 const loginController = require("./controllers/users/signin-up/loginController");
+const profileController = require("./controllers/users/updateProfile/profileController");
 const recruiterController = require("./controllers/recruiter/recruiterController");
 
 //Routes
-app.use("/user", registerController, loginController);
+app.use("/user", registerController, loginController, profileController);
 app.use("/recruiter", recruiterController);
 
 

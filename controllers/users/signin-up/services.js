@@ -36,7 +36,45 @@ async function getUserByEmail(email) {
   }
 }
 
+async function getUserById(id) {
+  try {
+    let pool = await sql.connect(config);
+    let getUser = await pool
+      .request()
+      .query("SELECT * from users where userId='" + id + "'");
+    return getUser.recordsets;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function editUser(user) {
+  try {
+    let pool = await sql.connect(config);
+    let editUser = await pool.query(
+      "UPDATE users SET email='" +
+        user.email +
+        "',password='" +
+        user.password +
+        "' where userId=" +
+        user.userId,
+      (err, result) => {
+        if (err) {
+          console.log("error", err);
+        } else {
+          console.log("result", result);
+        }
+      }
+    );
+    return editUser.recordsets;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 module.exports = {
   addUser: addUser,
   getUserByEmail: getUserByEmail,
+  getUserById: getUserById,
+  editUser: editUser,
 };

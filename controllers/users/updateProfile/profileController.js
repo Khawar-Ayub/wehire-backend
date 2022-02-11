@@ -1,5 +1,5 @@
 const express = require("express");
-var Db = require("./services");
+var Db = require("../signin-up/services");
 const router = express.Router();
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
@@ -7,16 +7,21 @@ const bcrypt = require("bcrypt");
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
-///////////////////////////   REGISTER    ////////////////////////////
-/*  http://localhost:4000/user/register    
+//////////////////// UPDATE PROFILE //////////////////////
+/*  http://localhost:5000/user/1
 {
-  "email": "ali123@gmail.com",
-  "password":"123"
-}
+    "email": "ali12563@gmail.com",
+    "password": "moiz1",
+    "confirmPassword": "moiz1"
+}  
 */
-
-router.route("/register").post((request, response) => {
-  let data = { ...request.body };
+router.route("/:id").put((request, response) => {
+  let data = {
+    email: request.body.email,
+    password: request.body.password,
+    confirmPassword: request.body.confirmPassword,
+    userId: request.params.id,
+  };
   if (!(data.email && data.password && data.confirmPassword)) {
     response.status(400).json({ message: "All inputs are required" });
   } else if (data.password !== data.confirmPassword) {
@@ -37,10 +42,11 @@ router.route("/register").post((request, response) => {
             });
           } else {
             data.password = hash;
-            Db.addUser(data)
+            Db.editUser(data)
               .then((data) => {
+                response.clearCookie("access_token");
                 response.status(201).json({
-                  message: "User added successfully",
+                  message: "User Updated successfully",
                 });
               })
               .catch((err) => {
