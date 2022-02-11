@@ -10,11 +10,24 @@ async function getRecruiter() {
     console.log(error);
   }
 }
+
+async function getRecruiterByEmail(email) {
+  try {
+    let pool = await sql.connect(config);
+    let getRecruiter = await pool
+      .request()
+      .query("SELECT * from recruiter where email='" + email + "'");
+    return getRecruiter.recordsets;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 async function addRecruiter(recruiter) {
   try {
     let pool = await sql.connect(config);
     let insertRecruiter = await pool
-      .query("Insert into recruiter(email,password,companyName,companyFounded) values('" + recruiter.email + "','" + recruiter.password + "','" + recruiter.companyName + "','" + recruiter.companyFounded + "')");
+      .query("Insert into recruiter(email,password) values('" + recruiter.email + "','" + recruiter.password + "')");
     return insertRecruiter.recordsets;
   } catch (err) {
     console.log(err);
@@ -22,5 +35,6 @@ async function addRecruiter(recruiter) {
 }
 module.exports = {
   getRecruiter: getRecruiter,
+  getRecruiterByEmail: getRecruiterByEmail,
   addRecruiter: addRecruiter,
 };

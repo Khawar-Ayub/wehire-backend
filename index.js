@@ -16,12 +16,11 @@ app.use(cookieParser())
 const registerController = require("./controllers/users/signin-up/registerController");
 const loginController = require("./controllers/users/signin-up/loginController");
 const profileController = require("./controllers/users/updateProfile/profileController");
-const recruiterController = require("./controllers/recruiter/recruiterController");
+const recruiterLoginController = require("./controllers/recruiter/recruiterLoginController");
 
 //Routes
 app.use("/user", registerController, loginController, profileController);
-app.use("/recruiter", recruiterController);
-
+app.use("/recruiter", recruiterLoginController);
 
 app.listen(port, () => {
     console.log(`Server is running Fine on port ${port}`);

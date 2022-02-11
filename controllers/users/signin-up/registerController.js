@@ -8,10 +8,11 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 ///////////////////////////   REGISTER    ////////////////////////////
-/*  http://localhost:4000/user/register    
+/*  http://localhost:5000/user/register    
 {
   "email": "ali123@gmail.com",
-  "password":"123"
+  "password":"123",
+  "confirmPassword":"123"
 }
 */
 
@@ -40,7 +41,7 @@ router.route("/register").post((request, response) => {
             Db.addUser(data)
               .then((data) => {
                 response.status(201).json({
-                  message: "User added successfully",
+                  message: "Congratulations! Your account has been successfully created.",
                 });
               })
               .catch((err) => {
